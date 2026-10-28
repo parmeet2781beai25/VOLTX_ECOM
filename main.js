@@ -26,7 +26,45 @@ const DEFAULT_PRODUCTS = [
         price: 5449.99,
         image: "photos/dea02608-bf89-4cf7-ade3-4e427650598a.jpg",
         meta: "Color: Space Gray | Storage: 256GB"
-    }
+    },
+    {
+        id: "prod-5",
+        title: "Apple AirPods GEN-3",
+        price: 12999.00,
+        image: "photos/images.jpg",
+        meta: "Color: White | Warranty: 1 Year"
+    },
+    {
+        id: "prod-6",
+        title: "Samsung Z Fold",
+        price: 112999.00,
+        image: "photos/images-2.jpg",
+        meta: "Color: Black | Warranty: 1 Year"
+    },
+    {  id: "prod-7",
+        title: "Lenovo Tab",
+        price: 20999.00,
+        image: "photos/shopping.jpg",
+        meta: "Color: Black | Warranty: 1 Year"
+    },
+    {  id: "prod-8",
+        title: "Apple IMAC",
+        price: 20999.00,
+        image: "photos/images-3.jpg",
+        meta: "Color: White | Warranty: 1 Year"
+    },
+    {  id: "prod-9",
+        title: "Samsung Curved Moniter",
+        price: 30999.00,
+        image: "photos/img.jpg",
+        meta: "Color: black | Warranty: 1 Year"
+    },
+    {  id: "prod-10",
+        title: "Apple Vision Pro",
+        price: 230999.00,
+        image: "photos/img-2.jpeg",
+        meta: "Color: White | Warranty: 1 Year"
+    },
 ];
 
 const PROMO_CODES = {
