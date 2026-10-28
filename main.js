@@ -179,7 +179,6 @@ function addToCart(productData) {
 document.addEventListener('DOMContentLoaded', () => {
     initTheme();
 
-    // Check if user just logged out via hash or flag
     if (window.location.hash === '#logout-success' || localStorage.getItem('voltx_just_logged_out') === 'true') {
         localStorage.removeItem('voltx_just_logged_out');
         showToast('You have been logged out successfully.');
@@ -404,6 +403,20 @@ function initCartPage() {
     renderCart();
 }
 
+// Promise-based Asynchronous Payment Handler
+function processPayment() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const isSuccess = Math.random() < 0.95;
+            if (isSuccess) {
+                resolve({ status: 'success', message: 'Payment Successful! Order placed successfully.' });
+            } else {
+                reject(new Error('Payment failed. Please check your card details and try again.'));
+            }
+        }, 1500);
+    });
+}
+
 function openPaymentModal() {
     let overlay = document.getElementById('paymentModalOverlay');
     if (!overlay) {
@@ -502,12 +515,18 @@ function openPaymentModal() {
             submitBtn.disabled = true;
             submitBtn.textContent = 'Processing Payment...';
 
-            setTimeout(() => {
-                saveCart([]);
-                closePaymentModal();
-                if (typeof initCartPage === 'function') initCartPage();
-                showToast('Payment Successful! Order placed successfully.');
-            }, 1500);
+            processPayment()
+                .then((result) => {
+                    saveCart([]);
+                    closePaymentModal();
+                    if (typeof initCartPage === 'function') initCartPage();
+                    showToast(result.message);
+                })
+                .catch((error) => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Pay & Complete Order →';
+                    showToast(error.message, 'error');
+                });
         });
     }
 
